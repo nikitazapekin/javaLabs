@@ -1,32 +1,46 @@
 package Point;
-public class Point {
-    private double x;
-    private double y;
 
+/**
+ * Класс, представляющий точку в двумерном пространстве.
+ */
+public class Point {
+    private double x; // Координата X
+    private double y; // Координата Y
+
+    /**
+     * Создает новую точку с заданными координатами.
+     *
+     * @param x Координата X
+     * @param y Координата Y
+     */
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Возвращает координату X точки.
+     *
+     * @return Координата X
+     */
     public double getX() {
         return x;
     }
 
+    /**
+     * Возвращает координату Y точки.
+     *
+     * @return Координата Y
+     */
     public double getY() {
         return y;
     }
 
     /**
-
-     * @param other
-     * @return
-     */
-
-
-    /**
+     * Вычисляет расстояние между текущей точкой и другой точкой.
      *
-     * @param other
-     * @return
+     * @param other Другая точка, до которой вычисляется расстояние
+     * @return Расстояние между двумя точками
      */
     public double distanceTo(Point other) {
         return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2));

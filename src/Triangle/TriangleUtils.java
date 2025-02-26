@@ -1,6 +1,17 @@
 package Triangle;
+
 import Triangle.Triangle;
-public  class TriangleUtils {
+
+/**
+ * Утилитарный класс для работы с треугольниками.
+ */
+public class TriangleUtils {
+    /**
+     * Проверяет, является ли треугольник равносторонним.
+     *
+     * @param t Треугольник для проверки
+     * @return true, если треугольник равносторонний, иначе false
+     */
     public static boolean isEquilateral(Triangle t) {
         double ab = t.a.distanceTo(t.b);
         double bc = t.b.distanceTo(t.c);
@@ -8,6 +19,12 @@ public  class TriangleUtils {
         return ab == bc && bc == ca;
     }
 
+    /**
+     * Проверяет, является ли треугольник равнобедренным.
+     *
+     * @param t Треугольник для проверки
+     * @return true, если треугольник равнобедренный, иначе false
+     */
     public static boolean isIsosceles(Triangle t) {
         double ab = t.a.distanceTo(t.b);
         double bc = t.b.distanceTo(t.c);
@@ -15,6 +32,12 @@ public  class TriangleUtils {
         return ab == bc || bc == ca || ca == ab;
     }
 
+    /**
+     * Проверяет, является ли треугольник прямоугольным.
+     *
+     * @param t Треугольник для проверки
+     * @return true, если треугольник прямоугольный, иначе false
+     */
     public static boolean isRight(Triangle t) {
         double ab = t.a.distanceTo(t.b);
         double bc = t.b.distanceTo(t.c);
