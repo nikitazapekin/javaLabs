@@ -4,8 +4,14 @@ package Point;
  * Класс, представляющий точку в двумерном пространстве.
  */
 public class Point {
-    private double x; // Координата X
-    private double y; // Координата Y
+
+    public double x;
+
+    /**
+     * Координата Y точки.
+     */
+
+    public double y;
 
     /**
      * Создает новую точку с заданными координатами.
