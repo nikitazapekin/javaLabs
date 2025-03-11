@@ -11,6 +11,9 @@ public class Main {
         train.addCarriage(new PassangerCarriage(40, 80, 2));
         train.addCarriage(new PassangerCarriage(60, 120, 4));
 
+        System.out.println("Марка поезда: " + train.model);
+        System.out.println("Вес поезда: " + train.weight);
+        System.out.println("Скорость поезда: " + train.maxSpeed);
         while (true) {
             System.out.println("\nМеню:");
             System.out.println("1 - Показать список вагонов");
@@ -58,7 +61,7 @@ public class Main {
                     break;
                 case 6:
                     System.out.println("Выход из программы...");
-                    scanner.close();
+                    //scanner.close();
                     return;
                 default:
                     System.out.println("Некорректный ввод, попробуйте снова.");

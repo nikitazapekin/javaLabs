@@ -1,8 +1,8 @@
 package Transport;
 
 public abstract class Transport {
-    protected String model;
-    protected int weight;
+    public  String model;
+    public int weight;
 
     public Transport(String model, int weight) {
         this.model = model;
