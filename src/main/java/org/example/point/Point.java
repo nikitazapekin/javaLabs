@@ -1,4 +1,4 @@
-package org.example.Point;
+package org.example.point;
 
 
 

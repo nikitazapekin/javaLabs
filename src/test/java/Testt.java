@@ -1,3 +1,37 @@
+
+import org.junit.jupiter.api.*;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class Testt {
+
+    @BeforeAll
+    static    void  beforeAll() {
+        System.out.println("[BeforeAll] Выполняется перед всеми тестами");
+    }
+
+    @AfterAll
+    static   void afterAll() {
+        System.out.println("[AfterAll] Выполняется после всех тестов");
+    }
+
+    @BeforeEach
+    void beforeEach() {
+        System.out.println("[BeforeEach] Выполняется перед каждым тестом");
+    }
+
+    @AfterEach
+    void afterEach() {
+        System.out.println("[AfterEach] Выполняется после каждого теста");
+    }
+
+    @Test
+    void testGetX() {
+        System.out.println("[AfterEach] Выполняется после каждого теста");
+    }
+
+
+}
+/*
 package org.example.Point;
 
 import org.junit.jupiter.api.*;
@@ -48,7 +82,7 @@ public class PointTest {
     }
 }
 
-
+*/
 
 /*
 package org.example.Point;
@@ -59,3 +93,8 @@ class PointTest {
 
 }
 */
+
+/*public class Test {
+}
+
+ */
