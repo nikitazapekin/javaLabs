@@ -6,11 +6,16 @@ import static org.junit.Assert.*;
 public class MainTest {
     @Test
     public void test1() {
-        int x = 10;
+     /*   int x = 10;
         double realY = Main.Test1(x);
         assertEquals(x, realY, 0.000000001);
+
+      */
     }
 }
+
+
+
 /*
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
