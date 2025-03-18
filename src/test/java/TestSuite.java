@@ -2,6 +2,7 @@
 import org.example.MainTest;
 import org.example.MainTest1;
 import org.example.Point.PointTest;
+import org.example.Point.PointTestAssertions;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.example.Point.Point;
@@ -13,6 +14,7 @@ import org.example.Point.Point;
       //  MainTest1.class,
        // MainTest.class,
         PointTest.class,
+        PointTestAssertions.class
 })
 public class TestSuite {
     // Этот класс не требует дополнительного кода.
