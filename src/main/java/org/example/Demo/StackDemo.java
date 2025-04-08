@@ -42,7 +42,6 @@ public class StackDemo {
         stack.push(50);
         printStackInfo(stack);
 
-        // Извлекаем все элементы
         System.out.println("Извлекаем все элементы:");
         while (!stack.isEmpty()) {
             System.out.println("Извлечено: " + stack.pop());
@@ -60,7 +59,22 @@ public class StackDemo {
 
 
     }
+private void checkIdentity() {
+    String[] testStrings = {
+            "(a + b)",
+            "[{()}]",
+            "({[}])",
+            "((())",
+            "][",
+            "<html><body></body></html>"
+    };
 
+    for (String str : testStrings) {
+        System.out.println("Строка: \"" + str + "\"");
+        System.out.println("Баланс скобок: " + (Stack.checkBracketBalance(str) ? "правильный" : "неправильный"));
+        System.out.println();
+    }
+}
 
     private static void printStackInfo(Stack<?> stack) {
         System.out.println("Содержимое стека: " + stack);
