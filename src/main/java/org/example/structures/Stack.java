@@ -1,5 +1,7 @@
 package org.example.structures;
 
+import org.example.BracketUtils.BracketUtils;
+
 public class Stack<T> {
     private static final int DEFAULT_CAPACITY = 10;
     private Object[] elements;
@@ -48,10 +50,26 @@ public class Stack<T> {
         System.arraycopy(elements, 0, newElements, 0, size);
         elements = newElements;
     }
-}
-/*
-public class Stack {
-}
 
 
- */
+
+    public static boolean checkBracketBalance(String str) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : str.toCharArray()) {
+            if (BracketUtils.isBracket(c)) {
+                if (BracketUtils.isOpeningBracket(c)) {
+                    stack.push(c);
+                } else {
+                    if (stack.isEmpty()) return false;
+                    char top = stack.pop();
+                    if (!BracketUtils.isMatchingPair(top, c)) return false;
+                }
+            }
+        }
+
+        return stack.isEmpty();
+    }
+
+
+}
