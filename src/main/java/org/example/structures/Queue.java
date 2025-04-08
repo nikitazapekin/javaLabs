@@ -92,17 +92,5 @@ public class Queue<T> {
             current = current.next;
         }
     }
-/*
-    private boolean isBracket(char c) {
-        return c == '(' || c == ')' || c == '[' || c == ']' ||
-                c == '{' || c == '}' || c == '<' || c == '>';
-    }
-*/
 
 }
-/*
-public class Queue {
-}
-
-
- */

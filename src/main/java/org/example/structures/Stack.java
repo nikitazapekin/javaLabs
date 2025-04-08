@@ -64,9 +64,6 @@ public class Stack<T> {
         capacity = newCapacity;
     }
 
-
-
-
     public void checkStackElems(String originalText) {
         if (isEmpty()) {
             System.out.println("Строка: \"" + originalText + "\" - нет скобок");
@@ -74,33 +71,38 @@ public class Stack<T> {
         }
 
 
-        Stack<Character> tempStack = new Stack<>();
         boolean balanced = true;
 
-
-        Object[] copy = new Object[elements.length];
-        System.arraycopy(elements, 0, copy, 0, top + 1);
-
         try {
-            for (int i = 0; i <= top; i++) {
-                char c = (Character) copy[i];
 
-                if (BracketUtils.isOpeningBracket(c)) {
-                    tempStack.push(c);
+            Stack<Character> bracketsStack = new Stack<>();
+            for (int i = 0; i <= top; i++) {
+                char c = (Character) elements[i];
+                if (BracketUtils.isBracket(c)) {
+                    bracketsStack.push(c);
+                }
+            }
+
+
+            Stack<Character> temp = new Stack<>();
+            while (!bracketsStack.isEmpty()) {
+                char c = bracketsStack.pop();
+                if (BracketUtils.isClosingBracket(c)) {
+                    temp.push(c);
                 } else {
-                    if (tempStack.isEmpty()) {
+                    if (temp.isEmpty()) {
                         balanced = false;
                         break;
                     }
-
-                    char last = tempStack.pop();
-                    if (!BracketUtils.isMatchingPair(last, c)) {
+                    char last = temp.pop();
+                    if (!BracketUtils.isMatchingPair(c, last)) {
                         balanced = false;
                         break;
                     }
                 }
             }
-            balanced = balanced && tempStack.isEmpty();
+
+            balanced = balanced && temp.isEmpty();
             System.out.println("Строка: \"" + originalText + "\" - " +
                     (balanced ? "скобки сбалансированы" : "скобки НЕ сбалансированы"));
         } catch (ClassCastException e) {
@@ -108,81 +110,6 @@ public class Stack<T> {
         }
     }
 
-  /*  private boolean isOpeningBracket(char c) {
-        return c == '(' || c == '[' || c == '{' || c == '<';
-    }
-
-    private boolean isMatchingPair(char opening, char closing) {
-        return (opening == '(' && closing == ')') ||
-                (opening == '[' && closing == ']') ||
-                (opening == '{' && closing == '}') ||
-                (opening == '<' && closing == '>');
-    }
-
-   */
-
 
 }
 
-/*
-import org.example.BracketUtils.BracketUtils;
-
-public class Stack<T> {
-    private static final int DEFAULT_CAPACITY = 10;
-    private Object[] elements;
-    private int size;
-
-    public Stack() {
-        elements = new Object[DEFAULT_CAPACITY];
-        size = 0;
-    }
-
-    public void push(T item) {
-        if (size == elements.length) {
-            resize();
-        }
-        elements[size++] = item;
-    }
-
-
-    public T pop() {
-        if (isEmpty()) {
-            throw new IllegalStateException("Стек пуст");
-        }
-        T item = (T) elements[--size];
-        elements[size] = null;
-        return item;
-    }
-
-
-    public T peek() {
-        if (isEmpty()) {
-            throw new IllegalStateException("Стек пуст");
-        }
-        return (T) elements[size - 1];
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    public int size() {
-        return size;
-    }
-
-    private void resize() {
-        Object[] newElements = new Object[elements.length * 2];
-        System.arraycopy(elements, 0, newElements, 0, size);
-        elements = newElements;
-    }
-
-
-
-    public static void checkBracketBalance(String str) {
-
-
-    }
-
-
-}
-*/
