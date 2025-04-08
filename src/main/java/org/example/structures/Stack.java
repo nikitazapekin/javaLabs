@@ -1,5 +1,130 @@
 package org.example.structures;
 
+
+import org.example.BracketUtils.BracketUtils;
+
+public class Stack<T> {
+    private static final int DEFAULT_CAPACITY = 10;
+    private Object[] elements;
+    private int top;
+    private int capacity;
+
+    public Stack() {
+        this(DEFAULT_CAPACITY);
+    }
+
+    public Stack(int initialCapacity) {
+        if (initialCapacity <= 0) {
+            throw new IllegalArgumentException("Initial capacity must be positive");
+        }
+        this.elements = new Object[initialCapacity];
+        this.top = -1;
+        this.capacity = initialCapacity;
+    }
+
+    public void push(T item) {
+        if (top == capacity - 1) {
+            resize();
+        }
+        elements[++top] = item;
+    }
+
+
+    public T pop() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
+        T item = (T) elements[top];
+        elements[top--] = null;
+        return item;
+    }
+
+
+    public T peek() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
+        return (T) elements[top];
+    }
+
+
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    public int size() {
+        return top + 1;
+    }
+
+    private void resize() {
+        int newCapacity = capacity * 2;
+        Object[] newArray = new Object[newCapacity];
+        System.arraycopy(elements, 0, newArray, 0, capacity);
+        elements = newArray;
+        capacity = newCapacity;
+    }
+
+
+
+
+    public void checkStackElems(String originalText) {
+        if (isEmpty()) {
+            System.out.println("Строка: \"" + originalText + "\" - нет скобок");
+            return;
+        }
+
+
+        Stack<Character> tempStack = new Stack<>();
+        boolean balanced = true;
+
+
+        Object[] copy = new Object[elements.length];
+        System.arraycopy(elements, 0, copy, 0, top + 1);
+
+        try {
+            for (int i = 0; i <= top; i++) {
+                char c = (Character) copy[i];
+
+                if (BracketUtils.isOpeningBracket(c)) {
+                    tempStack.push(c);
+                } else {
+                    if (tempStack.isEmpty()) {
+                        balanced = false;
+                        break;
+                    }
+
+                    char last = tempStack.pop();
+                    if (!BracketUtils.isMatchingPair(last, c)) {
+                        balanced = false;
+                        break;
+                    }
+                }
+            }
+            balanced = balanced && tempStack.isEmpty();
+            System.out.println("Строка: \"" + originalText + "\" - " +
+                    (balanced ? "скобки сбалансированы" : "скобки НЕ сбалансированы"));
+        } catch (ClassCastException e) {
+            System.out.println("Ошибка: стек содержит не символьные данные");
+        }
+    }
+
+  /*  private boolean isOpeningBracket(char c) {
+        return c == '(' || c == '[' || c == '{' || c == '<';
+    }
+
+    private boolean isMatchingPair(char opening, char closing) {
+        return (opening == '(' && closing == ')') ||
+                (opening == '[' && closing == ']') ||
+                (opening == '{' && closing == '}') ||
+                (opening == '<' && closing == '>');
+    }
+
+   */
+
+
+}
+
+/*
 import org.example.BracketUtils.BracketUtils;
 
 public class Stack<T> {
@@ -19,7 +144,7 @@ public class Stack<T> {
         elements[size++] = item;
     }
 
-    @SuppressWarnings("unchecked")
+
     public T pop() {
         if (isEmpty()) {
             throw new IllegalStateException("Стек пуст");
@@ -29,7 +154,7 @@ public class Stack<T> {
         return item;
     }
 
-    @SuppressWarnings("unchecked")
+
     public T peek() {
         if (isEmpty()) {
             throw new IllegalStateException("Стек пуст");
@@ -53,23 +178,11 @@ public class Stack<T> {
 
 
 
-    public static boolean checkBracketBalance(String str) {
-        Stack<Character> stack = new Stack<>();
+    public static void checkBracketBalance(String str) {
 
-        for (char c : str.toCharArray()) {
-            if (BracketUtils.isBracket(c)) {
-                if (BracketUtils.isOpeningBracket(c)) {
-                    stack.push(c);
-                } else {
-                    if (stack.isEmpty()) return false;
-                    char top = stack.pop();
-                    if (!BracketUtils.isMatchingPair(top, c)) return false;
-                }
-            }
-        }
 
-        return stack.isEmpty();
     }
 
 
 }
+*/
