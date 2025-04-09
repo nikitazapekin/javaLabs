@@ -74,32 +74,18 @@ public class Queue<T> {
         }
         return null;
     }
-    public void checkQueueElems() {
-        if (isEmpty()) {
-            System.out.println("Очередь пуста");
-            return;
-        }
-
-        System.out.println("Проверка баланса скобок в строках:");
-        Node<T> current = front;
-        while (current != null) {
-            T item = current.data;
-            if (item instanceof StringObject) {
-                String text = ((StringObject) item).getText();
-                Stack<Character> bracketStack = new Stack<>();
 
 
-                for (char c : text.toCharArray()) {
-                    if (BracketUtils.isBracket(c)) {
-                        bracketStack.push(c);
-                    }
-                }
+   public void checkQueueElems(T item) {
 
+       String text = ((StringObject) item).getText();
+       Stack<Character> bracketStack = new Stack<>();
+       for (char c : text.toCharArray()) {
+        bracketStack.push(c);
+       }
+       bracketStack.checkStackElems(text);
+       }
+  // }
 
-                bracketStack.checkStackElems(text);
-            }
-            current = current.next;
-        }
-    }
 
 }

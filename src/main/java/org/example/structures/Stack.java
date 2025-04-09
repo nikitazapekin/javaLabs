@@ -64,52 +64,139 @@ public class Stack<T> {
         capacity = newCapacity;
     }
 
+/*
     public void checkStackElems(String originalText) {
         if (isEmpty()) {
-            System.out.println("Строка: \"" + originalText + "\" - нет скобок");
+            System.out.println("Стек пуст - строка: \"" + originalText + "\"");
             return;
         }
 
+        // Создаем временные стеки для проверки
+        Stack<Character> tempStack1 = new Stack<>();
+        Stack<Character> tempStack2 = new Stack<>();
+        boolean isIdentical = true;
 
-        boolean balanced = true;
-
-        try {
-
-            Stack<Character> bracketsStack = new Stack<>();
-            for (int i = 0; i <= top; i++) {
-                char c = (Character) elements[i];
-                if (BracketUtils.isBracket(c)) {
-                    bracketsStack.push(c);
-                }
-            }
-
-
-            Stack<Character> temp = new Stack<>();
-            while (!bracketsStack.isEmpty()) {
-                char c = bracketsStack.pop();
-
-                if (BracketUtils.isClosingBracket(c)) {
-                    temp.push(c);
-                } else {
-                    if (temp.isEmpty()) {
-                        balanced = false;
-                        break;
-                    }
-                    char last = temp.pop();
-
-                    if (!BracketUtils.isMatchingPair(c, last)) {
-                        balanced = false;
-                        break;
-                    }
-                }
-            }
-
-            balanced = balanced && temp.isEmpty();
-            System.out.println("Строка: \"" + originalText + "\" - " + (balanced ? "скобки сбалансированы" : "скобки НЕ сбалансированы"));
-        } catch (ClassCastException e) {
-            System.out.println("Ошибка: стек содержит не символьные данные");
+        while (!this.isEmpty()) {
+     //       tempStack1.push(elements.pop());
         }
+
     }
+
+
+ */
+
+    /*
+public void checkStackElems(String originalText) {
+    if (isEmpty()) {
+        System.out.println("Стек пуст - строка: \"" + originalText + "\"");
+        return;
+    }
+
+    Stack<Character> tempStack1 = new Stack<>();
+    Stack<Character> tempStack2 = new Stack<>();
+    boolean isIdentical = true;
+    int index = 0;
+
+
+    while (!this.isEmpty()) {
+        tempStack1.push((Character)this.pop());
+    }
+
+    while (!tempStack1.isEmpty()) {
+        char stackChar = tempStack1.peek();
+
+        if (index >= originalText.length()) {
+            isIdentical = false;
+            break;
+        }
+
+        char stringChar = originalText.charAt(index++);
+
+        if (stackChar != stringChar) {
+            isIdentical = false;
+        }
+
+        tempStack2.push(tempStack1.pop());
+    }
+
+    if (index != originalText.length()) {
+        isIdentical = false;
+    }
+
+    while (!tempStack2.isEmpty()) {
+        this.push((T)tempStack2.pop());
+    }
+
+    System.out.println("Строка: \"" + originalText + "\" - " +
+            (isIdentical ? "идентична содержимому стека" : "НЕ идентична содержимому стека"));
+}
+
+     */
+    public void checkStackElems(String originalText) {
+        if (isEmpty()) {
+            System.out.println("Стек пуст - строка: \"" + originalText + "\"");
+            return;
+        }
+
+        Stack<Character> bracketStack = new Stack<>();
+        boolean isBalanced = true;
+
+        // Сначала проверим, что в стеке только скобки
+        Stack<Character> tempStack = new Stack<>();
+        while (!this.isEmpty()) {
+            char c = (Character)this.pop();
+            tempStack.push(c);
+            if (!BracketUtils.isBracket(c)) {
+                isBalanced = false;
+            }
+        }
+
+        // Вернем элементы обратно в исходный стек
+        while (!tempStack.isEmpty()) {
+            this.push((T)tempStack.pop());
+        }
+
+        if (!isBalanced) {
+            System.out.println("Строка: \"" + originalText + "\" - содержит не только скобки");
+            return;
+        }
+
+        // Теперь проверим баланс скобок
+        Stack<Character> checkStack = new Stack<>();
+        tempStack = new Stack<>();
+
+        while (!this.isEmpty()) {
+            char c = (Character)this.pop();
+            tempStack.push(c);
+
+            if (BracketUtils.isOpeningBracket(c)) {
+                checkStack.push(c);
+            } else if (BracketUtils.isClosingBracket(c)) {
+                if (checkStack.isEmpty()) {
+                    isBalanced = false;
+                    break;
+                }
+                char top = checkStack.pop();
+                if (!BracketUtils.isMatchingPair(top, c)) {
+                    isBalanced = false;
+                    break;
+                }
+            }
+        }
+
+        // Проверяем, что все открытые скобки были закрыты
+        isBalanced = isBalanced && checkStack.isEmpty();
+
+        // Восстанавливаем исходный стек
+        while (!tempStack.isEmpty()) {
+            this.push((T)tempStack.pop());
+        }
+
+        System.out.println("Строка: \"" + originalText + "\" - " +
+                (isBalanced ? "скобки сбалансированы" : "скобки НЕ сбалансированы"));
+    }
+
+
 
 
 }

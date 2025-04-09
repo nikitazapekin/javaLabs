@@ -32,7 +32,7 @@ public class Demo {
         queue.enqueue(new StringObject("]["));
         queue.enqueue(new StringObject("<html><body></body></html>"));
 
-
+/*
         printQueueContents(queue);
         queue.enqueue(new StringObject("Тест 1"));
         printQueueContents(queue);
@@ -46,8 +46,16 @@ printQueueContents(queue);
         StringObject itemQueuePeek = queue.peek();
         System.out.println("Извлеченный элемент (peek):" +itemQueuePeek.getText());
         printQueueContents(queue);
-        queue.checkQueueElems();
-printStackWork();
+
+
+ */
+      System.out.println("ПРОВЕРКА ОЧЕРЕДИ:");
+      queue.checkQueueElems(queue.dequeue());
+        queue.checkQueueElems(queue.dequeue());
+        queue.checkQueueElems(queue.dequeue());
+        queue.checkQueueElems(queue.dequeue());
+        queue.checkQueueElems(queue.dequeue());
+        printQueueContents(queue);
 
     }
 
