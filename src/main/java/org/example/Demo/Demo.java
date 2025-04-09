@@ -20,6 +20,38 @@ public class Demo {
             queue.enqueue(tempQueue.dequeue());
         }
     }
+
+
+
+
+    public static void main(String[] args) {
+        Queue<StringObject> queue = new Queue<StringObject>();
+        queue.enqueue(new StringObject("(a + b)"));
+        queue.enqueue(new StringObject("[{()}]"));
+        queue.enqueue(new StringObject("({[}])"));
+        queue.enqueue(new StringObject("]["));
+        queue.enqueue(new StringObject("<html><body></body></html>"));
+
+
+        printQueueContents(queue);
+        queue.enqueue(new StringObject("Тест 1"));
+        printQueueContents(queue);
+        StringObject currentItem = queue.peek();
+        System.out.println("Первый элемент:"+currentItem.getText());
+        System.out.println("Следующий узел после первого элемента:"+ queue.getNext(currentItem).getText());
+StringObject itemQueue = queue.dequeue();
+System.out.println("Выбранный и удаленный  элемент очереди (dequeue):" +itemQueue.getText());
+printQueueContents(queue);
+
+        StringObject itemQueuePeek = queue.peek();
+        System.out.println("Извлеченный элемент (peek):" +itemQueuePeek.getText());
+        printQueueContents(queue);
+        queue.checkQueueElems();
+printStackWork();
+
+    }
+
+
     private static void printStackContents(Stack<Integer> stack) {
         System.out.println("Содержимое стека (сверху вниз):");
 
@@ -40,61 +72,26 @@ public class Demo {
         }
     }
 
-    public static void main(String[] args) {
-        Queue<StringObject> queue = new Queue<StringObject>();
-        queue.enqueue(new StringObject("(a + b)"));
-        queue.enqueue(new StringObject("[{()}]"));
-        queue.enqueue(new StringObject("({[}])"));
-        queue.enqueue(new StringObject("]["));
-        queue.enqueue(new StringObject("<html><body></body></html>"));
-
-
-        printQueueContents(queue);
-
-
-        queue.enqueue(new StringObject("Тест 1"));
-        printQueueContents(queue);
-StringObject itemQueue = queue.dequeue();
-System.out.println("Выбранный элемент очереди (dequeue):" +itemQueue.getText());
-printQueueContents(queue);
-
-        StringObject itemQueuePeek = queue.peek();
-        System.out.println("Извлеченный элемент (peek):" +itemQueuePeek.getText());
-        printQueueContents(queue);
-
-
-        queue.checkQueueElems();
 
 
 
-        //  printStructuresWork();
-
-
-
-
-    }
-
-
-    private static void printStructuresWork() {
+    private static void printStackWork() {
         System.out.println("Принцип работы стека:");
         Stack<Integer> testStack = new Stack<>();
         testStack.push(1311);
         testStack.push(2241);
         testStack.push(3241);
         testStack.push(4141);
+        printStackContents(testStack);
         System.out.println("Pop stack:"+ testStack.pop());
         printStackContents(testStack);
         System.out.println("Peek stack:"+ testStack.peek());
         printStackContents(testStack);
-        System.out.println("Принцип работы очереди:");
-        Queue<Integer> testQueue = new Queue<>();
 
-        testQueue.enqueue(323);
-        testQueue.enqueue(4322);
-        testQueue.enqueue(31);
-        System.out.println("Decueue stack:"+ testQueue.peek());
-   //     printQueueContents(testQueue);
+        //     printQueueContents(testQueue);
 
     }
+
+
 
 }

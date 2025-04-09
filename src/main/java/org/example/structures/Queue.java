@@ -64,7 +64,16 @@ public class Queue<T> {
         return size;
     }
 
-
+    public T getNext(T item) {
+        Node<T> current = front;
+        while (current != null && current.next != null) {
+            if (current.data.equals(item)) {
+                return current.next.data;
+            }
+            current = current.next;
+        }
+        return null;
+    }
     public void checkQueueElems() {
         if (isEmpty()) {
             System.out.println("Очередь пуста");

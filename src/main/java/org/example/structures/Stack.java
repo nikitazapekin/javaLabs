@@ -87,6 +87,7 @@ public class Stack<T> {
             Stack<Character> temp = new Stack<>();
             while (!bracketsStack.isEmpty()) {
                 char c = bracketsStack.pop();
+
                 if (BracketUtils.isClosingBracket(c)) {
                     temp.push(c);
                 } else {
@@ -95,6 +96,7 @@ public class Stack<T> {
                         break;
                     }
                     char last = temp.pop();
+
                     if (!BracketUtils.isMatchingPair(c, last)) {
                         balanced = false;
                         break;
