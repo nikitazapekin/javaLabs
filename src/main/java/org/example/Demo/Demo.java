@@ -96,7 +96,7 @@ printQueueContents(queue);
         System.out.println("Peek stack:"+ testStack.peek());
         printStackContents(testStack);
 
-        //     printQueueContents(testQueue);
+
 
     }
 

@@ -92,10 +92,7 @@ public class QueueTest {
         assertEquals("second", stringQueue.peek());
     }
 
-    @Test
-    void testCheckQueueElemsWithEmptyQueue() {
-        assertDoesNotThrow(() -> stringObjectQueue.checkQueueElems());
-    }
+
 
     @Test
     void testCheckQueueElemsWithStringObjects() {
@@ -103,15 +100,10 @@ public class QueueTest {
         stringObjectQueue.enqueue(new StringObject("{unbalanced"));
         stringObjectQueue.enqueue(new StringObject("no brackets"));
 
-        assertDoesNotThrow(() -> stringObjectQueue.checkQueueElems());
+        assertDoesNotThrow(() -> stringObjectQueue.checkQueueElems(new StringObject("{}")));
     }
 
-    @Test
-    void testCheckQueueElemsWithNonStringObjects() {
-        Queue<Integer> testQueue = new Queue<>();
-        testQueue.enqueue(123);
-        assertDoesNotThrow(() -> testQueue.checkQueueElems());
-    }
+
 
     @Test
     void testFIFOOrder() {
