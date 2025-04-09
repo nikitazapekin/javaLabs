@@ -103,8 +103,7 @@ public class Stack<T> {
             }
 
             balanced = balanced && temp.isEmpty();
-            System.out.println("Строка: \"" + originalText + "\" - " +
-                    (balanced ? "скобки сбалансированы" : "скобки НЕ сбалансированы"));
+            System.out.println("Строка: \"" + originalText + "\" - " + (balanced ? "скобки сбалансированы" : "скобки НЕ сбалансированы"));
         } catch (ClassCastException e) {
             System.out.println("Ошибка: стек содержит не символьные данные");
         }

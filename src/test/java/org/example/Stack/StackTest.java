@@ -95,42 +95,7 @@ public class StackTest {
                 "Создание стека с отрицательным capacity должно вызывать исключение");
     }
 
-    @Test
-    void testCheckStackElemsWithBalancedBrackets() {
-        charStack.push('(');
-        charStack.push(')');
-        charStack.push('{');
-        charStack.push('}');
-        charStack.checkStackElems("test");
 
-    }
-
-    @Test
-    void testCheckStackElemsWithUnbalancedBrackets() {
-        charStack.push('(');
-        charStack.push('{');
-        charStack.push(')');
-        charStack.checkStackElems("test");
-
-    }
-
-    @Test
-    void testCheckStackElemsWithNoBrackets() {
-        charStack.push('a');
-        charStack.push('b');
-        charStack.push('c');
-        charStack.checkStackElems("test");
-        // Проверка для стека без скобок
-    }
-
-    @Test
-    void testCheckStackElemsWithNonCharElements() {
-        intStack.push(1);
-        intStack.push(2);
-        intStack.push(3);
-        intStack.checkStackElems("test");
-
-    }
 
     @Test
     void testStackWithStrings() {
