@@ -80,10 +80,10 @@ public class Queue<T> {
 
        String text = ((StringObject) item).getText();
        Stack<Character> bracketStack = new Stack<>();
-       //  for (char c : text.toCharArray()) {
-       // bracketStack.push(c);
-      // }
-       bracketStack.checkStackElems(text);
+        for (char c : text.toCharArray()) {
+        bracketStack.push(c);
+       }
+       bracketStack.checkStackElems(bracketStack, text);
        }
 
 

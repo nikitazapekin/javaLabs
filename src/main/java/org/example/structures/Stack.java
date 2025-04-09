@@ -66,35 +66,54 @@ public class Stack<T> {
         capacity = newCapacity;
     }
 
-    public void checkStackElems(String originalText) {
-        Stack<Character> openingBrackets = new Stack<>();
 
+    private static void printStackContents(Stack<Character> stack) {
+        System.out.println("Содержимое стека (сверху вниз):");
+
+
+        Stack<Character> tempStack = new Stack<>();
+        int position = 1;
+
+
+        while (!stack.isEmpty()) {
+            Character element = stack.pop();
+            System.out.println(position++ + ": " + element);
+            tempStack.push(element);
+        }
+
+
+        while (!tempStack.isEmpty()) {
+            stack.push(tempStack.pop());
+        }
+    }
+    public void checkStackElems(Stack<Character> bracketStack, String originalText) {
+        Stack<Character> openingBrackets = new Stack<>();
         boolean isBalanced = true;
 
+        Stack<Character> tempStack = new Stack<>();
+        while (!bracketStack.isEmpty()) {
+            tempStack.push(bracketStack.pop());
+        }
 
-        for (char c : originalText.toCharArray()) {
+        while (!tempStack.isEmpty()) {
+            char c = tempStack.pop();
+
             if (BracketUtils.isBracket(c)) {
                 if (BracketUtils.isOpeningBracket(c)) {
-
                     openingBrackets.push(c);
                 } else {
-
                     if (openingBrackets.isEmpty()) {
-
                         isBalanced = false;
                         break;
-                    } else {
-                        char lastOpening = openingBrackets.pop();
-                        if (!BracketUtils.isMatchingPair(lastOpening, c)) {
-
-                            isBalanced = false;
-                            break;
-                        }
+                    }
+                    char lastOpening = openingBrackets.pop();
+                    if (!BracketUtils.isMatchingPair(lastOpening, c)) {
+                        isBalanced = false;
+                        break;
                     }
                 }
             }
         }
-
 
         if (!openingBrackets.isEmpty()) {
             isBalanced = false;
@@ -102,14 +121,11 @@ public class Stack<T> {
 
 
         if (isBalanced) {
-            System.out.println("Скобки в строке сбалансированы правильно: " + originalText);
+            System.out.println("Скобки сбалансированы: " + originalText);
         } else {
-            System.out.println("Ошибка: скобки в строке не сбалансированы: " + originalText);
+            System.out.println("Ошибка: скобки не сбалансированы: " + originalText);
         }
     }
-
-
-
 
 
 

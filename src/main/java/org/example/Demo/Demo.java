@@ -49,7 +49,7 @@ printQueueContents(queue);
 
 
  */
-      System.out.println("ПРОВЕРКА ОЧЕРЕДИ:");
+        //   System.out.println("ПРОВЕРКА ОЧЕРЕДИ:");
       queue.checkQueueElems(queue.dequeue());
         queue.checkQueueElems(queue.dequeue());
         queue.checkQueueElems(queue.dequeue());
