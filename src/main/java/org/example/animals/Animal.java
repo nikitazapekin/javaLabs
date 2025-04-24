@@ -17,7 +17,7 @@ public class Animal {
     }
 
     public void makeSound() {
-        System.out.println(" Издает звук");
+        System.out.println(name + " Издает звук");
     }
 
     public void run() {

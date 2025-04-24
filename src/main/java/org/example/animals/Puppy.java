@@ -8,22 +8,22 @@ public class Puppy extends Dog {
 
     @Override
     public void makeSound() {
-        System.out.println(getName() + " гавкает");
+        System.out.println("Щенок "+ getName() + " гавкает");
     }
 
     @Override
     public void run() {
-        System.out.println(getName() + " бегает");
+        System.out.println("Щенок " +getName() + " бегает");
     }
 
     @Override
     public void jump() {
-        System.out.println(getName() + " прыгает");
+        System.out.println("Щенок "+getName() + " прыгает");
     }
 
     @Override
     public void bite() {
-        System.out.println(getName() + " кусает");
+        System.out.println("Щенок "+getName() + " кусает");
     }
 
     @Override

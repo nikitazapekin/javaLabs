@@ -7,11 +7,11 @@ public class Dog extends Animal {
 
     @Override
     public void makeSound() {
-        System.out.println(getName() + " гавкает!");
+        System.out.println("Собака "+ getName() + " гавкает!");
     }
 
     public void bite() {
-        System.out.println(getName() + " кусает");
+        System.out.println("Собака "+ getName() + " кусает");
     }
 
     @Override
