@@ -59,9 +59,7 @@ public class Main {
             }
         }
 
-        disc.addCatalog(null);
-        movies.addRecord(null);
-        System.out.println("\nAfter adding null - catalog count: " + disc.getCatalogs().size());
+
 
 
         }
