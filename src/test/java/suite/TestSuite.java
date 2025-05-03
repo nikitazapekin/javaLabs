@@ -1,13 +1,10 @@
 package suite;
 
-/*
-import org.example.Stack.StackTest;
-import org.example.Queue.QueueTest;
 
- */
-import org.example.Animal.AnimalTest;
-import org.example.Dog.DogTest;
-import org.example.Puppy.PuppyTest;
+
+import org.example.BlueRayDisc;
+
+import org.example.BlueRayDiscTest.BlueRayDiscTest;
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;
 /*
@@ -18,7 +15,8 @@ import org.junit.platform.suite.api.Suite;
 
  */
 @Suite
-@SelectClasses({AnimalTest.class, DogTest.class, PuppyTest.class
+@SelectClasses({  //PuppyTest.class
+        BlueRayDiscTest.class
 
 })
 public class TestSuite {

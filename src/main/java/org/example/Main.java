@@ -1,35 +1,69 @@
 package org.example;
 
 
-import org.example.animals.Dog;
-import org.example.animals.Puppy;
+
 
 public class Main {
     public static void main(String[] args) {
 
+        BlueRayDisc disc = new BlueRayDisc("MyMovieCollection");
 
 
-            Puppy myPuppy = new Puppy("Rex");
-
-            System.out.println("Puppy's name: " + myPuppy.getName());
+        BlueRayDisc.Catalog movies = disc.createCatalog("Movies");
 
 
-            myPuppy.makeSound();
-            myPuppy.jump();
-            myPuppy.run();
-            myPuppy.bite();
+        BlueRayDisc.Catalog.SubCatalog actionMovies = movies.createSubCatalog("Action");
+        BlueRayDisc.Catalog.SubCatalog comedyMovies = movies.createSubCatalog("Comedy");
 
 
-            System.out.println(myPuppy);
+        BlueRayDisc.Catalog.Record matrix = movies.createRecord("Matrix", "Sci-fi action movie");
+        BlueRayDisc.Catalog.Record johnWick = movies.createRecord("John Wick", "Action movie with Keanu Reeves");
+        actionMovies.addRecord(matrix);
+        actionMovies.addRecord(johnWick);
 
 
+        comedyMovies.addRecord(movies.createRecord("The Hangover", "Funny comedy movie"));
+        comedyMovies.addRecord(movies.createRecord("Superbad", "Teen comedy"));
+
+        movies.addRecord(movies.createRecord("Inception", "Mind-bending movie"));
 
 
-        Puppy myPuppy1 = new Puppy("Rex");
-            System.out.println(myPuppy.equals(myPuppy1));
+        disc.addCatalog(movies);
 
-        Dog myPuppy2 = new Dog("Rex");
-        System.out.println(myPuppy.equals(myPuppy2));
+
+        BlueRayDisc.Catalog music = disc.createCatalog("Music");
+        music.addRecord(music.createRecord("Thriller", "Album by Michael Jackson"));
+        disc.addCatalog(music);
+
+
+        System.out.println("=== Disc Info ===");
+        System.out.println(disc);
+
+        System.out.println("\n=== Catalogs ===");
+        for (BlueRayDisc.Catalog catalog : disc.getCatalogs()) {
+            System.out.println(catalog);
+
+
+            for (BlueRayDisc.Catalog.SubCatalog subCatalog : catalog.getSubCatalogs()) {
+                System.out.println("  " + subCatalog);
+
+                for (BlueRayDisc.Catalog.Record record : subCatalog.getRecords()) {
+                    System.out.println("    " + record);
+                }
+            }
+
+
+            System.out.println("  Records in main catalog:");
+            for (BlueRayDisc.Catalog.Record record : catalog.getRecords()) {
+                System.out.println("    " + record);
+            }
+        }
+
+        disc.addCatalog(null);
+        movies.addRecord(null);
+        System.out.println("\nAfter adding null - catalog count: " + disc.getCatalogs().size());
+
+
         }
 
     }
