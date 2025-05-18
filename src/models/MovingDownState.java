@@ -1,12 +1,12 @@
 package models;
 
-
 import interfaces.ElevatorState;
 
 public class MovingDownState implements ElevatorState {
     @Override
     public void callElevator(Elevator elevator, int floor) {
-        System.out.println("Лифт уже движется вниз. Текущий этаж: " + elevator.getCurrentFloor());
+        System.out.println("Изменение целевого этажа на " + floor + " во время движения");
+        elevator.setTargetFloor(floor);
     }
 
     @Override
@@ -21,17 +21,22 @@ public class MovingDownState implements ElevatorState {
 
     @Override
     public void move(Elevator elevator) {
-        elevator.setCurrentFloor(elevator.getCurrentFloor() - 1);
-        System.out.println("Лифт опускается на этаж " + elevator.getCurrentFloor());
+        int newFloor = elevator.getCurrentFloor() - 1;
+        elevator.setCurrentFloor(newFloor);
+        System.out.println("Лифт опускается на этаж " + newFloor);
 
-        if (elevator.getCurrentFloor() == elevator.getTargetFloor()) {
+        if (newFloor == elevator.getTargetFloor()) {
             elevator.setState(new DoorOpenState());
+        } else if (newFloor < elevator.getTargetFloor()) {
+
+            elevator.setState(new MovingUpState());
         }
     }
 
     @Override
     public void stop(Elevator elevator) {
         System.out.println("Аварийная остановка лифта");
+        elevator.clearTarget();
         elevator.setState(new IdleState());
     }
 

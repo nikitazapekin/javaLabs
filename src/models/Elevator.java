@@ -1,17 +1,18 @@
 package models;
 
-
 import interfaces.ElevatorState;
 
 public class Elevator {
     private ElevatorState state;
     private int currentFloor;
     private int targetFloor;
+    private boolean hasTarget;
 
     public Elevator() {
         this.state = new IdleState();
         this.currentFloor = 1;
         this.targetFloor = 1;
+        this.hasTarget = false;
     }
 
     public void setState(ElevatorState state) {
@@ -32,10 +33,20 @@ public class Elevator {
 
     public void setTargetFloor(int floor) {
         this.targetFloor = floor;
+        this.hasTarget = true;
+    }
+
+    public boolean hasTarget() {
+        return hasTarget;
+    }
+
+    public void clearTarget() {
+        this.hasTarget = false;
+        this.targetFloor = currentFloor;
     }
 
     public void callElevator(int floor) {
-        this.targetFloor = floor;
+        this.setTargetFloor(floor);
         state.callElevator(this, floor);
     }
 
@@ -57,5 +68,9 @@ public class Elevator {
 
     public void printStatus() {
         state.printStatus();
+        System.out.println("Текущий этаж: " + currentFloor);
+        if (hasTarget) {
+            System.out.println("Целевой этаж: " + targetFloor);
+        }
     }
 }

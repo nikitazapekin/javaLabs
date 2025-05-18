@@ -1,12 +1,12 @@
 package models;
 
-
 import interfaces.ElevatorState;
 
 public class DoorOpenState implements ElevatorState {
     @Override
     public void callElevator(Elevator elevator, int floor) {
-        System.out.println("Закройте двери перед вызовом лифта");
+        System.out.println("Установлен целевой этаж: " + floor);
+        elevator.setTargetFloor(floor);
     }
 
     @Override
@@ -27,7 +27,8 @@ public class DoorOpenState implements ElevatorState {
 
     @Override
     public void stop(Elevator elevator) {
-        System.out.println("Лифт уже остановлен с открытыми дверями");
+        System.out.println("Отмена целевого этажа");
+        elevator.clearTarget();
     }
 
     @Override

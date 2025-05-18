@@ -5,7 +5,8 @@ import interfaces.ElevatorState;
 public class DoorsClosedState implements ElevatorState {
     @Override
     public void callElevator(Elevator elevator, int floor) {
-        System.out.println("Лифт готов к движению. Используйте move()");
+        System.out.println("Установлен новый целевой этаж: " + floor);
+        elevator.setTargetFloor(floor);
     }
 
     @Override
@@ -21,18 +22,26 @@ public class DoorsClosedState implements ElevatorState {
 
     @Override
     public void move(Elevator elevator) {
-        if (elevator.getTargetFloor() > elevator.getCurrentFloor()) {
-            elevator.setState(new MovingUpState());
-        } else if (elevator.getTargetFloor() < elevator.getCurrentFloor()) {
-            elevator.setState(new MovingDownState());
+        if (elevator.hasTarget()) {
+            if (elevator.getTargetFloor() > elevator.getCurrentFloor()) {
+                elevator.setState(new MovingUpState());
+                elevator.move();
+            } else if (elevator.getTargetFloor() < elevator.getCurrentFloor()) {
+                elevator.setState(new MovingDownState());
+                elevator.move();
+            } else {
+                elevator.setState(new DoorOpenState());
+            }
         } else {
-            System.out.println("Лифт уже на целевом этаже");
+            System.out.println("Не указан целевой этаж. Используйте callElevator()");
         }
     }
 
     @Override
     public void stop(Elevator elevator) {
-        System.out.println("Лифт уже остановлен с закрытыми дверями");
+        System.out.println("Отмена целевого этажа");
+        elevator.clearTarget();
+        elevator.setState(new IdleState());
     }
 
     @Override

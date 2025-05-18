@@ -1,24 +1,17 @@
 package models;
 
-
 import interfaces.ElevatorState;
 
 public class IdleState implements ElevatorState {
     @Override
     public void callElevator(Elevator elevator, int floor) {
-        System.out.println("Вызов лифта на этаж " + floor);
-        if (floor > elevator.getCurrentFloor()) {
-            elevator.setState(new MovingUpState());
-        } else if (floor < elevator.getCurrentFloor()) {
-            elevator.setState(new MovingDownState());
-        } else {
-            elevator.setState(new DoorOpenState());
-        }
+        System.out.println("Установлен целевой этаж: " + floor);
+        elevator.setTargetFloor(floor);
     }
 
     @Override
     public void openDoors(Elevator elevator) {
-        System.out.println("Открытие дверей из состояния ожидания");
+        System.out.println("Открытие дверей");
         elevator.setState(new DoorOpenState());
     }
 
@@ -29,12 +22,25 @@ public class IdleState implements ElevatorState {
 
     @Override
     public void move(Elevator elevator) {
-        System.out.println("Не указан этаж для движения. Используйте callElevator()");
+        if (elevator.hasTarget()) {
+            if (elevator.getTargetFloor() > elevator.getCurrentFloor()) {
+                elevator.setState(new MovingUpState());
+                elevator.move();
+            } else if (elevator.getTargetFloor() < elevator.getCurrentFloor()) {
+                elevator.setState(new MovingDownState());
+                elevator.move();
+            } else {
+                elevator.setState(new DoorOpenState());
+            }
+        } else {
+            System.out.println("Не указан целевой этаж. Используйте callElevator()");
+        }
     }
 
     @Override
     public void stop(Elevator elevator) {
-        System.out.println("Лифт уже остановлен в состоянии ожидания");
+        System.out.println("Отмена целевого этажа");
+        elevator.clearTarget();
     }
 
     @Override

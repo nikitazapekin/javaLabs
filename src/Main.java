@@ -1,21 +1,17 @@
 import models.Elevator;
-
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
         Elevator elevator = new Elevator();
 
         System.out.println("Управление лифтом. Доступные команды:");
-        System.out.println("call N - вызвать лифт на этаж N");
+        System.out.println("call N - установить целевой этаж N");
         System.out.println("open - открыть двери");
         System.out.println("close - закрыть двери");
-        System.out.println("move - начать движение к целевому этажу");
-        System.out.println("stop - аварийная остановка");
+        System.out.println("move - сделать шаг движения (1 этаж)");
+        System.out.println("stop - отменить целевой этаж/аварийная остановка");
         System.out.println("status - показать состояние лифта");
         System.out.println("exit - выход");
 
@@ -48,7 +44,6 @@ public class Main {
                         break;
                     case "status":
                         elevator.printStatus();
-                        System.out.println("Текущий этаж: " + elevator.getCurrentFloor());
                         break;
                     case "exit":
                         System.out.println("Выход из программы.");
@@ -61,7 +56,5 @@ public class Main {
                 System.out.println("Некорректный номер этажа");
             }
         }
-
-
     }
 }
