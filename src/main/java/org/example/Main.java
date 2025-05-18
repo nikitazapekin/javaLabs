@@ -1,67 +1,39 @@
 package org.example;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-
-        BlueRayDisc disc = new BlueRayDisc("МояКоллекцияФильмов");
-
-
-        BlueRayDisc.Catalog movies = disc.createCatalog("Фильмы");
-
-
-        BlueRayDisc.Catalog.SubCatalog actionMovies = movies.createSubCatalog("Боевики");
-        BlueRayDisc.Catalog.SubCatalog comedyMovies = movies.createSubCatalog("Комедии");
+        List<User> users = Arrays.asList(
+                new User(1, "Иванов Иван Иванович", 45),
+                new User(2, "Петров Петр Петрович", 30),
+                new User(3, "Алексеев Алексей Алексеевич", 25),
+                new User(4, "Сидоров Сидор Сидорович", 50)
+        );
 
 
-        BlueRayDisc.Catalog.Record matrix = movies.createRecord("Матрица", "Фантастический боевик");
-        BlueRayDisc.Catalog.Record johnWick = movies.createRecord("Джон Уик", "Боевик с Киану Ривзом");
-        actionMovies.addRecord(matrix);
-        actionMovies.addRecord(johnWick);
+        UserSelector getOldest = userList -> userList.stream()
+                .max(Comparator.comparingInt(User::getAge))
+                .orElse(null);
+
+        UserSelector getYoungest = userList -> userList.stream()
+                .min(Comparator.comparingInt(User::getAge))
+                .orElse(null);
+
+        UserSelector getFirstAlphabetical = userList -> userList.stream()
+                .min(Comparator.comparing(User::getFullName))
+                .orElse(null);
+
+        UserSelector getLastAlphabetical = userList -> userList.stream()
+                .max(Comparator.comparing(User::getFullName))
+                .orElse(null);
 
 
-        comedyMovies.addRecord(movies.createRecord("Мальчишник в Вегасе", "Смешная комедия"));
-        comedyMovies.addRecord(movies.createRecord("Суперплохие", "Подростковая комедия"));
-
-        movies.addRecord(movies.createRecord("Начало", "Фильм с запутанным сюжетом"));
-
-
-        disc.addCatalog(movies);
-
-
-        BlueRayDisc.Catalog music = disc.createCatalog("Музыка");
-        music.addRecord(music.createRecord("Thriller", "Альбом Майкла Джексона"));
-        disc.addCatalog(music);
-
-
-        System.out.println("=== Информация о диске ===");
-        System.out.println(disc);
-
-        System.out.println("\n=== Каталоги ===");
-        for (BlueRayDisc.Catalog catalog : disc.getCatalogs()) {
-            System.out.println(catalog);
-
-
-            for (BlueRayDisc.Catalog.SubCatalog subCatalog : catalog.getSubCatalogs()) {
-                System.out.println("  " + subCatalog);
-
-                for (BlueRayDisc.Catalog.Record record : subCatalog.getRecords()) {
-                    System.out.println("    " + record);
-                }
-            }
-
-
-            System.out.println("  Записи в основном каталоге:");
-            for (BlueRayDisc.Catalog.Record record : catalog.getRecords()) {
-                System.out.println("    " + record);
-            }
-
-
-        }
-        System.out.println("Записи в каталоге комедий:");
-        for (BlueRayDisc.Catalog.Record movie : comedyMovies.getRecords()) {
-
-            System.out.println(movie.getRecordName() + ": " + movie.getContent());
-        }
-
+        System.out.println("Самый старший: " + getOldest.select(users));
+        System.out.println("Самый младший: " + getYoungest.select(users));
+        System.out.println("Первый по алфавиту: " + getFirstAlphabetical.select(users));
+        System.out.println("Последний по алфавиту: " + getLastAlphabetical.select(users));
     }
 }
