@@ -10,7 +10,6 @@ public class User {
         this.fullName = fullName;
         this.age = age;
     }
-
     public int getId() {
         return id;
     }

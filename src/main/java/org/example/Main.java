@@ -12,28 +12,9 @@ public class Main {
                 new User(3, "Алексеев Алексей Алексеевич", 25),
                 new User(4, "Сидоров Сидор Сидорович", 50)
         );
-
-
-        UserSelector getOldest = userList -> userList.stream()
-                .max(Comparator.comparingInt(User::getAge))
-                .orElse(null);
-
-        UserSelector getYoungest = userList -> userList.stream()
-                .min(Comparator.comparingInt(User::getAge))
-                .orElse(null);
-
-        UserSelector getFirstAlphabetical = userList -> userList.stream()
-                .min(Comparator.comparing(User::getFullName))
-                .orElse(null);
-
-        UserSelector getLastAlphabetical = userList -> userList.stream()
-                .max(Comparator.comparing(User::getFullName))
-                .orElse(null);
-
-
-        System.out.println("Самый старший: " + getOldest.select(users));
-        System.out.println("Самый младший: " + getYoungest.select(users));
-        System.out.println("Первый по алфавиту: " + getFirstAlphabetical.select(users));
-        System.out.println("Последний по алфавиту: " + getLastAlphabetical.select(users));
+        System.out.println("Самый старший: " + UserSelectors.OLDEST.select(users));
+        System.out.println("Самый младший: " + UserSelectors.YOUNGEST.select(users));
+        System.out.println("Первый по алфавиту: " + UserSelectors.FIRST_ALPHABETICAL.select(users));
+        System.out.println("Последний по алфавиту: " + UserSelectors.LAST_ALPHABETICAL.select(users));
     }
 }
