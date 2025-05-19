@@ -8,20 +8,25 @@ public class AnonymousExample {
         }
     }
 
-    public void demonstrateAnonymousClass() {
+    public void demonstrateAnonymousClass(int speed) {
 
         Vehicle anonymousVehicle = new Vehicle() {
             @Override
             public void move() {
                 System.out.println("Anonymous vehicle is moving");
+                transportSpeed();
             }
-
+            public void transportSpeed() {
+                System.out.println("Speed:" + speed);
+            }
             public void additionalMethod() {
                 System.out.println("This is additional method in anonymous class");
             }
         };
 
         anonymousVehicle.move();
+
+
 
     }
 

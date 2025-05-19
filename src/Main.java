@@ -12,10 +12,11 @@ public class Main {
             System.out.println("---------------------");
         }
 
-
+        VehicleType train = VehicleType.TRAIN;
         System.out.println("\n=== Anonymous Class Demonstration ===");
         AnonymousExample example = new AnonymousExample();
-        example.demonstrateAnonymousClass();
+        example.demonstrateAnonymousClass( train.getMaxSpeed());
+
     }
 
 
