@@ -16,7 +16,7 @@ public class StrokeProcessTest {
 
     @AfterAll
     static void afterAll() {
-        System.out.println("Завершение тестирования processString");
+        System.out.println("Завершение тестирования processString.");
     }
 
 
