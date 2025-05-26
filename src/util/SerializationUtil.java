@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SerializationUtil {
-    @SuppressWarnings("unchecked")
     public static <T extends Serializable> List<T> loadData(String filename) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
             return (List<T>) ois.readObject();

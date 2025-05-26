@@ -16,11 +16,9 @@ public class Order implements Serializable {
         this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
-
     public double getTotalPrice() {
         return quantity * unitPrice;
     }
-
     public String getCustomerName() { return customerName; }
     public String getProductName() { return productName; }
     public int getQuantity() { return quantity; }
@@ -31,7 +29,7 @@ public class Order implements Serializable {
         return String.format("%s: %s x%d * %.2f = %.2f",
                 customerName, productName, quantity, unitPrice, getTotalPrice());
     }
-
+    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,4 +45,6 @@ public class Order implements Serializable {
     public int hashCode() {
         return Objects.hash(customerName, productName, quantity, unitPrice);
     }
+
+     */
 }

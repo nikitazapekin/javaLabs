@@ -57,7 +57,6 @@ public class OrderService {
     public void showCustomerOrders() {
         Map<String, List<Order>> customerOrders = orders.stream()
                 .collect(Collectors.groupingBy(Order::getCustomerName));
-
         System.out.println("\nЗаказы по покупателям:");
         customerOrders.forEach((customer, ordersList) -> {
             double total = ordersList.stream().mapToDouble(Order::getTotalPrice).sum();
@@ -69,7 +68,6 @@ public class OrderService {
     public void showProductOrders() {
         Map<String, List<Order>> productOrders = orders.stream()
                 .collect(Collectors.groupingBy(Order::getProductName));
-
         System.out.println("\nЗаказы по товарам:");
         productOrders.forEach((product, ordersList) -> {
             double total = ordersList.stream().mapToDouble(Order::getTotalPrice).sum();
