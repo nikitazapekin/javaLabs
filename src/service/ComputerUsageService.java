@@ -23,12 +23,11 @@ public class ComputerUsageService {
             System.out.println("Нет данных для отображения.");
             return;
         }
-
         System.out.println("\nВсе записи:");
         System.out.println("№ комп.| Клиент       | Дата      | Начало | Конец ");
         System.out.println("-------+--------------+-----------+--------+-------");
         for (ComputerUsage usage : usages) {
-            System.out.printf("%-6d | %-12s | %-9s | %-6s | %-6s%n",
+              System.out.printf("%-6d | %-12s | %-9s | %-6s | %-6s%n",
                     usage.getComputerNumber(),
                     usage.getClientName(),
                     usage.getDate(),

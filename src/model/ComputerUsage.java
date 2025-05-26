@@ -35,9 +35,5 @@ public class ComputerUsage implements Serializable {
         return (end.getTime() - start.getTime()) / (60 * 1000);
     }
 
-    @Override
-    public String toString() {
-        return String.format("%d;%s;%s;%s;%s",
-                computerNumber, clientName, date, startTime, endTime);
-    }
+
 }
