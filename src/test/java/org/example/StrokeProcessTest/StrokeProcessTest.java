@@ -31,5 +31,14 @@ public class StrokeProcessTest {
     }
 
 
+    @Test
+    void testCountWithout() {
+        String input = "rrr!";
+        String result = processString.appendVowelsCount(input);
+        System.out.println(result);
+        assertEquals("rrr!", result);
+    }
+
+
 }
 

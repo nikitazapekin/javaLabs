@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class SortTest {
 
     private String[] testStrings;
-
+    private String[] testStringsLowerCase;
     @BeforeAll
     static void beforeAll() {
         System.out.println("Начало тестирования UserSelector");
@@ -33,6 +33,10 @@ public class SortTest {
                 "JUnit Testing",
                 "Mockito Framework"
         };
+
+        testStringsLowerCase = new String[]{
+                "Hello", "WORLD", "Java", "sORTing", "Example"
+        };
         sortMethods.comparisonCount = 0;
     }
     @AfterEach
@@ -45,14 +49,17 @@ public class SortTest {
         String substring = "s";
         String[] sortedBySubstring = sortArray(testStrings, sortMethods.bySubstringPosition(substring),
                 "по позиции первого вхождения '" + substring + "'");
-        assertEquals("Java Programming", testStrings[0]);
+        assertEquals("Java Programming", sortedBySubstring[0]);
         assertTrue(sortMethods.comparisonCount > 0);
     }
 
     @Test
     void sortByLowerCase() {
-        String[] sortedByLowerCase = sortArray(testStrings, sortMethods.byLowerCaseCount(),
+        String[] sortedByLowerCase = sortArray(testStringsLowerCase, sortMethods.byLowerCaseCount(),
                 "по количеству маленьких букв");
+
+        assertEquals("WORLD", sortedByLowerCase[0]);
+        assertTrue(sortMethods.comparisonCount > 0);
     }
     private static String[] sortArray(String[] array, Comparator<String> comparator, String description) {
         String[] sortedArray = Arrays.copyOf(array, array.length);
