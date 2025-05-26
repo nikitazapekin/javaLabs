@@ -1,16 +1,14 @@
-package SortTest;
+package org.example.SortTest;
 
 
 
-import org.example.User;
-import org.example.UserSelector;
 import org.example.helpers.sortMethods;
 import org.junit.jupiter.api.*;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
-import org.example.UserSelectors;
+
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class SortTest {
 

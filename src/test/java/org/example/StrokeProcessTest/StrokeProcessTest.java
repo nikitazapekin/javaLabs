@@ -1,4 +1,4 @@
-package StrokeProcessTest;
+package org.example.StrokeProcessTest;
 
 
 
