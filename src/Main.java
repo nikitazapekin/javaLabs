@@ -1,7 +1,8 @@
 import service.ComputerUsageService;
 import java.util.Scanner;
- class Main {
-    private static final String CSV_FILE = "computer_usage.csv";
+
+class Main {
+    private static final String CSV_FILE = "computer_usage.txt";
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ComputerUsageService service = new ComputerUsageService(CSV_FILE, scanner);
@@ -30,6 +31,7 @@ import java.util.Scanner;
             }
         }
     }
+
     private static void printMenu() {
         System.out.println("\nМеню:");
         System.out.println("1. Просмотреть все данные");

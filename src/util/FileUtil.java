@@ -12,7 +12,7 @@ public class FileUtil {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(";");
+                String[] parts = line.split(",");
                 if (parts.length == 5) {
                     int computerNumber = Integer.parseInt(parts[0]);
                     usages.add(new ComputerUsage(
@@ -36,7 +36,7 @@ public class FileUtil {
     public static void saveDataToFile(String filename, List<ComputerUsage> usages) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
             for (ComputerUsage usage : usages) {
-                writer.println(usage.toString());
+                writer.println(usage.toCSVString());
             }
             System.out.println("Данные успешно сохранены в файл.");
         } catch (IOException e) {

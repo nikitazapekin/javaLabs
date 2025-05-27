@@ -35,5 +35,14 @@ public class ComputerUsage implements Serializable {
         return (end.getTime() - start.getTime()) / (60 * 1000);
     }
 
+    public String toCSVString() {
+        return String.join(",",
+                String.valueOf(computerNumber),
+                clientName,
+                date,
+                startTime,
+                endTime);
+    }
+
 
 }
