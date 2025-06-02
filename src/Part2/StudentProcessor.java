@@ -10,6 +10,9 @@ public class StudentProcessor {
 
     public static void main(String[] args) {
         List<Student> students = createStudentsList();
+
+        System.out.println(" Список студентов: '");
+DisplayUsersStream(students);
         String targetMiddleName = "Ivanovich";
         System.out.println("1. Список студентов с отчеством '" + targetMiddleName + "':");
         printStudentsByPatronymic(students, targetMiddleName);
@@ -49,6 +52,12 @@ public class StudentProcessor {
     public static void printStudentsUppercaseStream(List<Student> students) {
         students.stream()
                 .map(student -> student.toString().toUpperCase())
+                .forEach(System.out::println);
+    }
+
+
+    public static void DisplayUsersStream(List<Student> students) {
+        students.stream()
                 .forEach(System.out::println);
     }
     private static List<Student> createStudentsList() {
