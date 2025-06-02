@@ -2,7 +2,9 @@ import service.ComputerUsageService;
 import java.util.Scanner;
 
 class Main {
-    private static final String CSV_FILE = "computer_usage.txt";
+
+    private static final String CSV_FILE = "computer_usage.csv";
+   // private static final String CSV_FILE = "computer_usage.txt";
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ComputerUsageService service = new ComputerUsageService(CSV_FILE, scanner);

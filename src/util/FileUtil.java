@@ -12,7 +12,7 @@ public class FileUtil {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
+                String[] parts = line.split(";");
                 if (parts.length == 5) {
                     int computerNumber = Integer.parseInt(parts[0]);
                     usages.add(new ComputerUsage(

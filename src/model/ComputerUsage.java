@@ -36,7 +36,7 @@ public class ComputerUsage implements Serializable {
     }
 
     public String toCSVString() {
-        return String.join(",",
+        return String.join(";",
                 String.valueOf(computerNumber),
                 clientName,
                 date,

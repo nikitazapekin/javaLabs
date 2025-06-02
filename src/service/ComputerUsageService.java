@@ -23,7 +23,7 @@ public class ComputerUsageService {
             System.out.println("Нет данных для отображения.");
             return;
         }
-        System.out.println("\nВсе записи:");
+        System.out.println("Все записи:");
         System.out.println("№ комп.| Клиент       | Дата      | Начало | Конец ");
         System.out.println("-------+--------------+-----------+--------+-------");
         for (ComputerUsage usage : usages) {
@@ -38,14 +38,12 @@ public class ComputerUsageService {
 
     public void addNewRecord() {
         try {
-            System.out.println("\nДобавление новой записи:");
+            System.out.println("Добавление новой записи:");
 
             System.out.print("Номер компьютера: ");
             int computerNumber = Integer.parseInt(scanner.nextLine());
-
             System.out.print("Фамилия и инициалы клиента: ");
             String clientName = scanner.nextLine();
-
             System.out.print("Дата (дд.мм.гггг): ");
             String date = scanner.nextLine();
 
@@ -64,7 +62,7 @@ public class ComputerUsageService {
     }
 
     public void generateComputerUsageReportByDate() {
-        System.out.print("\nВведите дату для отчета (дд.мм.гггг): ");
+        System.out.print("Введите дату для отчета (дд.мм.гггг): ");
         String date = scanner.nextLine();
 
         Map<Integer, Long> computerUsage = usages.stream()
@@ -85,7 +83,7 @@ public class ComputerUsageService {
             return;
         }
 
-        System.out.println("\nОтчет по времени использования компьютеров на " + date + ":");
+        System.out.println("Отчет по времени использования компьютеров на " + date + ":");
         System.out.println("№ комп.| Время использования (мин)");
         System.out.println("-------+--------------------------");
         computerUsage.forEach((computer, duration) ->
@@ -93,7 +91,7 @@ public class ComputerUsageService {
     }
 
     public void generateComputerUsageDetails() {
-        System.out.print("\nВведите номер компьютера: ");
+        System.out.print("Введите номер компьютера: ");
         int computerNumber;
         try {
             computerNumber = Integer.parseInt(scanner.nextLine());
@@ -115,7 +113,7 @@ public class ComputerUsageService {
             return;
         }
 
-        System.out.printf("\nДетали использования компьютера %d на %s:%n", computerNumber, date);
+        System.out.printf("Детали использования компьютера %d на %s:%n", computerNumber, date);
         System.out.println("Клиент       | Начало | Конец  | Длительность (мин)");
         System.out.println("-------------+--------+--------+-------------------");
 
