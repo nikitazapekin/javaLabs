@@ -33,7 +33,7 @@ class Main {
     }
 
     private static void printMenu() {
-        System.out.println("\nМеню:");
+        System.out.println("Меню:");
         System.out.println("1. Просмотреть все данные");
         System.out.println("2. Добавить новую запись");
         System.out.println("3. Отчет по времени использования компьютеров на дату");
